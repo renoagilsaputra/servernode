@@ -4,26 +4,6 @@ const https = require("https");
 
 const getAll = async (req, res) => {
   try {
-    const url =
-      "https://jsonmock.hackerrank.com/api/moviesdata/search/?Title=maze";
-
-    const request = https.request(url, (response) => {
-      let data = "";
-      response.on("data", (chunk) => {
-        data = data + chunk.toString();
-      });
-
-      response.on("end", () => {
-        const body = JSON.parse(data);
-        console.log(body.total);
-      });
-    });
-
-    request.on("error", (error) => {
-      console.log("An error", error);
-    });
-
-    request.end();
     const data = await sequelize.query(`SELECT * FROM penduduk`);
 
     return res.status(200).json({
